@@ -1,6 +1,8 @@
 搭建博客
 	http://www.cnblogs.com/lyh421/category/1027558.html
 	https://www.cnblogs.com/lyh421/p/7103052.html
+思维导图
+	http://www.imooc.com/article/20193#child_2_9
 各配置文件
 	http://learning.happymmall.com/
 接口
