@@ -1,1 +1,3 @@
 环境搭建：
+1、通过pom.xml 配置 <contextPath>/${project.artifactId}</contextPath> 指定项目名称
+2、对于springDispatcherServlet对应的url-pattern设置为/ -> 访问index需要在地址栏加上index.jsp，设置为*.do 则可以不需要加上
