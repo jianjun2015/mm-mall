@@ -7,4 +7,7 @@ import junit.framework.TestCase;
  */
 public class AppTest extends TestCase {
 
+    public void testDemo(){
+        System.out.println(true);
+    }
 }
