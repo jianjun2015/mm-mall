@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by wangjianjun on 2017/11/24.
  */
-@Controller("/")
+@Controller
 public class IndexController {
 
-    @RequestMapping("index.jsp")
+    @RequestMapping("/")
     public String login(HttpServletRequest request, HttpServletResponse response){
         return "index";
     }
