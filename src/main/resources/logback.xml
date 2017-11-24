@@ -51,7 +51,7 @@
     <!--异步记录-->
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
         <queueSize>1000</queueSize>
-        <appender-ref ref="FILE" />
+        <appender-ref ref="DAYFILE" />
     </appender>
 
     <logger name="com.mmall" level="DEBUG" additivity="false">
