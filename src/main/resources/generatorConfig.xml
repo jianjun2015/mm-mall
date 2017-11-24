@@ -35,7 +35,7 @@
 						 targetProject="src/main/resources" >
 			<property name="enableSubPackages" value="false"/>
 		</sqlMapGenerator>
-		<javaClientGenerator targetPackage="com.mmall.dao"
+		<javaClientGenerator targetPackage="com.mmall.mapper"
 							 targetProject="src/main/java" type="XMLMAPPER" >
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>

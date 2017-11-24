@@ -1,4 +1,4 @@
-package com.mmall.dao;
+package com.mmall.mapper;
 
 import com.mmall.pojo.Shipping;
 import java.util.List;
