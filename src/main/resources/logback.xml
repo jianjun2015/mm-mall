@@ -1,63 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<configuration>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--appender记录日志的输出目的地，目的地可以是控制台、文件、远程套接字服务器、 MySQL、PostreSQL、 Oracle和其他数据库、 JMS和远程UNIX Syslog守护进程等-->
+    <!--Logger 可以被分配级别。级别包括：TRACE、DEBUG、INFO、WARN 和 ERROR-->
+    <!--logback的默认配置-->
+    <!--如果配置文件 logback-test.xml 和 logback.xml 都不存在，那么 logback 默认地会调用BasicConfigurator ，创建一个最小化配置-->
+    <!--配置文件的基本结构：以<configuration>开头，后面有零个或多个<appender>元素，有零个或多个<logger>元素，有最多一个<root>元素。-->
+    <!--Logback默认配置的步骤-->
+    <!--　　　　(1). 尝试在 classpath下查找文件logback-test.xml；-->
+    <!--　　　　(2). 如果文件不存在，则查找文件logback.xml；-->
+    <!--　　　　(3). 如果两个文件都不存在，logback用BasicConfigurator自动对自己进行配置，这会导致记录输出到控制台。-->
+
+    <!--contextName 设置log对应的应用名-->
+    <contextName>mm-mall</contextName>
+
+    <!--timestamp 获取时间戳-->
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <!--appender 负责写日志的组件 它有两个必要属性name和class。name指定appender名称，class指定appender的全限定名-->
+    <!--encoder 日志进行格式化-->
+
+    <!--ConsoleAppender 日志输出到控制台-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
             <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
         </encoder>
     </appender>
 
-    <!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
-         the key "bySecond" into the logger context. This value will be
-         available to all subsequent configuration elements. -->
-    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <!--FileAppender：把日志添加到文件 如果要使用则需要添加到异步处理或者root节点下-->
+    <!--file 被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建，没有默认值-->
+    <!--如 ->linux 环境：/home/logs/logback/tomcat/app.log-->
+    <!--如 ->windous 环境：D:/software/apache-tomcat-8.5.4/app.log-->
+    <!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
+        <!--<file>testFile-${bySecond}.log</file>-->
+        <!--<append>true</append>-->
+        <!--<encoder>-->
+            <!--<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>testFile-${bySecond}.log</file>
-        <append>true</append>
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-        <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
+    <!--RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件-->
+    <!--file 同上-->
+    <!--rollingPolicy 当发生滚动时，决定RollingFileAppender的行为，涉及文件移动和重命名。-->
+    <!--maxHistory 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。-->
     <appender name="DAYFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logFile.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- daily rollover -->
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
 
-            <!-- keep 30 days' worth of history capped at 3GB total size -->
+        <!--配置表示每天生成一个日志文件，保存30天的日志文件-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
             <maxHistory>30</maxHistory>
             <totalSizeCap>3GB</totalSizeCap>
-
         </rollingPolicy>
+
+        <!--配置表示按照固定窗口模式生成日志文件，当文件大于20MB时，生成新的日志文件。窗口大小是1到3，当保存了3个归档文件后，将覆盖最早的日志。-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+            <!--<fileNamePattern>tests.%i.log.zip</fileNamePattern>-->
+            <!--<minIndex>1</minIndex>-->
+            <!--<maxIndex>3</maxIndex>-->
+        <!--</rollingPolicy>-->
+
+        <!--指定文件的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+            <!--<maxFileSize>20MB</maxFileSize>-->
+        <!--</triggeringPolicy>-->
 
         <encoder>
             <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <!--日志异步到数据库 需要配置对应的数据库表 logback-init.sql -->
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+        <!--<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">-->
+            <!--<dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+                <!--<driverClass>com.mysql.jdbc.Driver</driverClass>-->
+                <!--<url>jdbc:mysql://localhost:3306/mm_mall?useSSL=false</url>-->
+                <!--<user>root</user>-->
+                <!--<password>123456</password>-->
+                <!--<sqlDialect class="ch.qos.logback.core.db.dialect.MySQLDialect" />-->
+            <!--</dataSource>-->
+        <!--</connectionSource>-->
+    <!--</appender>-->
 
-
-    <!--<root level="debug">-->
-        <!--<appender-ref ref="STDOUT"/>-->
-        <!--<appender-ref ref="DAYFILE"/>-->
-        <!--<appender-ref ref="FILE"/>-->
-    <!--</root>-->
-
-    <!--异步记录-->
+    <!--异步记录 自动加载到队列等待处理-->
+    <!--AsyncAppender并不处理日志，只是将日志缓冲到一个BlockingQueue里面去，并在内部创建一个工作线程从队列头部获取日志，
+    之后将获取的日志循环记录到附加的其他appender上去，从而达到不阻塞主线程的效果。因此AsynAppender仅仅充当事件转发器，
+    必须引用另一个appender来做事。-->
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
         <queueSize>1000</queueSize>
         <appender-ref ref="DAYFILE" />
     </appender>
 
+    <!--logger 用来设置某一个包或具体的某一个类的日志打印级别、以及指定<appender>。<loger>仅有一个name属性，
+    一个可选的level[用来设置打印级别，大小写无关]和
+    一个可选的addtivity属性[addtivity: 是否向上级loger传递打印信息]。-->
+    <!--可以包含零个或多个<appender-ref>元素，标识这个appender将会添加到这个logger-->
     <logger name="com.mmall" level="DEBUG" additivity="false">
         <appender-ref ref="ASYNC" />
     </logger>
 
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+    <!--mm-mall 日志信息输出到控制台，仅在开发时候用，上线之后需要注释到，上线之后的日志会记录的文件的中-->
+    <logger name="com.mmall" level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="DB"/>-->
+    </logger>
+
+    <!--子节点<root>:它也是<logger>元素，但是它是根logger,是所有<logger>的上级。只有一个level属性，因为name已经被命名为"root",且已经是最上级了。-->
+    <!--表示把>=DEBUG级别的日志都输出到控制台【上线之后level设置为error】-->
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
