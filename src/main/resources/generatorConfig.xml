@@ -41,13 +41,13 @@
 		</javaClientGenerator>
 
 		<!--表名对应实体对象-->
+		<table tableName="mmall_user"
+			   domainObjectName="TUser">
+			<generatedKey column="id" sqlStatement="JDBC"  identity="true"/>
+		</table>
+
 		<table tableName="mmall_shipping"
-			   domainObjectName="Shipping"
-			   enableCountByExample="false"
-			   enableUpdateByExample="false"
-			   enableDeleteByExample="false"
-			   enableSelectByExample="false"
-			   selectByExampleQueryId="false">
+			   domainObjectName="TShipping">
 			<generatedKey column="id" sqlStatement="JDBC"  identity="true"/>
 		</table>
 
