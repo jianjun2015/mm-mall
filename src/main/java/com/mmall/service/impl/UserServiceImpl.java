@@ -178,6 +178,14 @@ public class UserServiceImpl implements IUserService{
         return ServerResponse.createByErrorMessage("更新失败");
     }
 
+    @Override
+    public ServerResponse<String> checkAdminRole(User user) {
+        if (user.getRole() == Consts.Role.ROLE_ADMIN){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByErrorMessage("当前非管理员，无权限操作");
+    }
+
     private TUser buildTUser(User user){
         TUser tUser = new TUser();
         tUser.setAnswer(user.getAnswer());

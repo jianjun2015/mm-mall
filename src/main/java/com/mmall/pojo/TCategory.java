@@ -17,6 +17,9 @@ public class TCategory {
 
     private Date updateTime;
 
+    public TCategory() {
+    }
+
     public TCategory(Integer id, Integer parentId, String name, Boolean status, Integer sortOrder, Date createTime, Date updateTime) {
         this.id = id;
         this.parentId = parentId;
