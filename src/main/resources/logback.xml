@@ -47,7 +47,7 @@
 
         <!--配置表示每天生成一个日志文件，保存30天的日志文件-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
             <maxHistory>30</maxHistory>
             <totalSizeCap>3GB</totalSizeCap>
         </rollingPolicy>
