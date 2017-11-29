@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="mm_mall@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="mm_mall">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="com-component"/>
+    <schema id="4" parent="1" name="favorites"/>
+    <schema id="5" parent="1" name="high_concurrency"/>
+    <schema id="6" parent="1" name="information_schema"/>
+    <schema id="7" parent="1" name="module"/>
+    <schema id="8" parent="1" name="mybatis"/>
+    <schema id="9" parent="1" name="myproject"/>
+    <schema id="10" parent="1" name="mysql"/>
+    <schema id="11" parent="1" name="my_sso"/>
+    <schema id="12" parent="1" name="performance_schema"/>
+    <schema id="13" parent="1" name="sakila"/>
+    <schema id="14" parent="1" name="seckill"/>
+    <schema id="15" parent="1" name="shiro"/>
+    <schema id="16" parent="1" name="shiro_db"/>
+    <schema id="17" parent="1" name="shiro_demo"/>
+    <schema id="18" parent="1" name="sys"/>
+    <schema id="19" parent="1" name="test"/>
+    <schema id="20" parent="1" name="test1"/>
+    <schema id="21" parent="1" name="work"/>
+    <schema id="22" parent="1" name="world"/>
+    <table id="23" parent="2" name="logging_event"/>
+    <table id="24" parent="2" name="logging_event_exception"/>
+    <table id="25" parent="2" name="logging_event_property"/>
+    <table id="26" parent="2" name="mmall_category"/>
+    <table id="27" parent="2" name="mmall_shipping"/>
+    <table id="28" parent="2" name="mmall_user"/>
+    <column id="29" parent="23" name="timestmp">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="23" name="formatted_message">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="23" name="logger_name">
+      <Position>3</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="23" name="level_string">
+      <Position>4</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="23" name="thread_name">
+      <Position>5</Position>
+      <DataType>varchar(254)|0</DataType>
+    </column>
+    <column id="34" parent="23" name="reference_flag">
+      <Position>6</Position>
+      <DataType>smallint(6)|0</DataType>
+    </column>
+    <column id="35" parent="23" name="arg0">
+      <Position>7</Position>
+      <DataType>varchar(254)|0</DataType>
+    </column>
+    <column id="36" parent="23" name="arg1">
+      <Position>8</Position>
+      <DataType>varchar(254)|0</DataType>
+    </column>
+    <column id="37" parent="23" name="arg2">
+      <Position>9</Position>
+      <DataType>varchar(254)|0</DataType>
+    </column>
+    <column id="38" parent="23" name="arg3">
+      <Position>10</Position>
+      <DataType>varchar(254)|0</DataType>
+    </column>
+    <column id="39" parent="23" name="caller_filename">
+      <Position>11</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="23" name="caller_class">
+      <Position>12</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="23" name="caller_method">
+      <Position>13</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="23" name="caller_line">
+      <Position>14</Position>
+      <DataType>char(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="23" name="event_id">
+      <Position>15</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <key id="44" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>event_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="45" parent="24" name="event_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="24" name="i">
+      <Position>2</Position>
+      <DataType>smallint(6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="24" name="trace_line">
+      <Position>3</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="48" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>event_id
+i</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="49" parent="24" name="logging_event_exception_ibfk_1">
+      <ColNames>event_id</ColNames>
+      <RefSchemaName>mm_mall</RefSchemaName>
+      <RefTableName>logging_event</RefTableName>
+      <RefColNames>event_id</RefColNames>
+    </foreign-key>
+    <column id="50" parent="25" name="event_id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="25" name="mapped_key">
+      <Position>2</Position>
+      <DataType>varchar(254)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="25" name="mapped_value">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <key id="53" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>event_id
+mapped_key</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="54" parent="25" name="logging_event_property_ibfk_1">
+      <ColNames>event_id</ColNames>
+      <RefSchemaName>mm_mall</RefSchemaName>
+      <RefTableName>logging_event</RefTableName>
+      <RefColNames>event_id</RefColNames>
+    </foreign-key>
+    <column id="55" parent="26" name="id">
+      <Position>1</Position>
+      <Comment>类别Id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="56" parent="26" name="parent_id">
+      <Position>2</Position>
+      <Comment>父类别id当id=0时说明是根节点,一级类别</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="57" parent="26" name="name">
+      <Position>3</Position>
+      <Comment>类别名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="58" parent="26" name="status">
+      <Position>4</Position>
+      <Comment>类别状态1-正常,2-已废弃</Comment>
+      <DataType>tinyint(1)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="59" parent="26" name="sort_order">
+      <Position>5</Position>
+      <Comment>排序编号,同类展示顺序,数值相等则自然排序</Comment>
+      <DataType>int(4)|0</DataType>
+    </column>
+    <column id="60" parent="26" name="create_time">
+      <Position>6</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="61" parent="26" name="update_time">
+      <Position>7</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <key id="62" parent="26" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="63" parent="27" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="64" parent="27" name="user_id">
+      <Position>2</Position>
+      <Comment>用户id</Comment>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="65" parent="27" name="receiver_name">
+      <Position>3</Position>
+      <Comment>收货姓名</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="66" parent="27" name="receiver_phone">
+      <Position>4</Position>
+      <Comment>收货固定电话</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="67" parent="27" name="receiver_mobile">
+      <Position>5</Position>
+      <Comment>收货移动电话</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="68" parent="27" name="receiver_province">
+      <Position>6</Position>
+      <Comment>省份</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="69" parent="27" name="receiver_city">
+      <Position>7</Position>
+      <Comment>城市</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="70" parent="27" name="receiver_district">
+      <Position>8</Position>
+      <Comment>区/县</Comment>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="71" parent="27" name="receiver_address">
+      <Position>9</Position>
+      <Comment>详细地址</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="72" parent="27" name="receiver_zip">
+      <Position>10</Position>
+      <Comment>邮编</Comment>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <column id="73" parent="27" name="create_time">
+      <Position>11</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="74" parent="27" name="update_time">
+      <Position>12</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <key id="75" parent="27" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="76" parent="28" name="id">
+      <Position>1</Position>
+      <Comment>用户表id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="77" parent="28" name="username">
+      <Position>2</Position>
+      <Comment>用户名</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="78" parent="28" name="password">
+      <Position>3</Position>
+      <Comment>用户密码，MD5加密</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="79" parent="28" name="email">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="80" parent="28" name="phone">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="81" parent="28" name="question">
+      <Position>6</Position>
+      <Comment>找回密码问题</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="82" parent="28" name="answer">
+      <Position>7</Position>
+      <Comment>找回密码答案</Comment>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="83" parent="28" name="role">
+      <Position>8</Position>
+      <Comment>角色0-管理员,1-普通用户</Comment>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="28" name="create_time">
+      <Position>9</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="28" name="update_time">
+      <Position>10</Position>
+      <Comment>最后一次更新时间</Comment>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="86" parent="28" name="user_name_unique">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="87" parent="28" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="88" parent="28" name="user_name_unique">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>user_name_unique</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
