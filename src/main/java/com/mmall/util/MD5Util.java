@@ -10,6 +10,11 @@ import java.security.MessageDigest;
  */
 public class MD5Util {
 
+    public static void main(String[] args) {
+        String s = MD5EncodeUtf8("admin");
+        System.out.println(s);
+    }
+
     private static String byteArrayToHexString(byte b[]) {
         StringBuffer resultSb = new StringBuffer();
         for (int i = 0; i < b.length; i++)

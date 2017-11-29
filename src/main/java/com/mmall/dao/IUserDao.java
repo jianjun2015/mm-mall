@@ -2,6 +2,8 @@ package com.mmall.dao;
 
 import com.mmall.pojo.TUser;
 
+import java.util.Date;
+
 /**
  * @author: wangjianjun
  * @description:
@@ -10,6 +12,12 @@ import com.mmall.pojo.TUser;
  */
 public interface IUserDao {
 
-    int checkUsername(String username);
+    TUser selectByUsername(String username);
+    int checkEmail(String email);
+    int saveUser(TUser tUser);
     TUser selectByUsernamePassword(String username,String password);
+    int checkAnswer(String username, String question, String answer);
+    int updatePasswordByUsername(String username,String password, Date date);
+    int checkEmailByUserId(String email,Integer id);
+    int updateUserById(TUser tUser);
 }

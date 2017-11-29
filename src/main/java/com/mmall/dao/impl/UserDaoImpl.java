@@ -5,6 +5,9 @@ import com.mmall.mapper.TUserMapper;
 import com.mmall.pojo.TUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 /**
  * @author: wangjianjun
@@ -12,23 +15,53 @@ import org.springframework.stereotype.Repository;
  * @date: 2017/11/28 17:41
  * @version: V1.0
  */
-@Repository
+@Repository("iUserDao")
+@Transactional(rollbackFor = Exception.class)
 public class UserDaoImpl implements IUserDao{
 
     @Autowired
-    private TUserMapper userMapper;
+    private TUserMapper tUserMapper;
 
     @Override
-    public int checkUsername(String username) {
-        TUser tUser = userMapper.selectByUsername(username);
-        if (tUser == null){
-            return 0;
-        }
-        return 1;
+    public TUser selectByUsername(String username) {
+        return tUserMapper.selectByUsername(username);
+    }
+
+    @Override
+    public int checkEmail(String email) {
+        return tUserMapper.selectByEmail(email);
+    }
+
+    @Override
+    public int saveUser(TUser tUser) {
+
+        tUser.setCreateTime(new Date());
+        tUser.setUpdateTime(new Date());
+        return tUserMapper.insert(tUser);
     }
 
     @Override
     public TUser selectByUsernamePassword(String username, String password) {
-        return userMapper.selectByUsernamePassword(username,password);
+        return tUserMapper.selectByUsernamePassword(username,password);
+    }
+
+    @Override
+    public int checkAnswer(String username, String question, String answer) {
+        return tUserMapper.checkAnswer(username,question,answer);
+    }
+
+    @Override
+    public int updatePasswordByUsername(String username, String password,Date date) {
+        return tUserMapper.updatePassword(username,password,date);
+    }
+
+    @Override
+    public int checkEmailByUserId(String email, Integer id) {
+        return tUserMapper.checkEmailByUserId(email,id);
+    }
+
+    @Override
+    public int updateUserById(TUser tUser) {
+        return tUserMapper.updateByPrimaryKeySelective(tUser);
     }
 }

@@ -14,6 +14,7 @@ public class TUserConvert extends AbstractConverter<TUser,User> {
 
     @Override
     protected void assignValue(User target, TUser source) {
+        target.setId(source.getId());
         target.setAnswer(source.getAnswer());
         target.setCreateTime(source.getCreateTime());
         target.setEmail(source.getEmail());

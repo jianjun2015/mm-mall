@@ -23,6 +23,9 @@ public class TUser {
 
     private Date updateTime;
 
+    public TUser() {
+    }
+
     public TUser(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime) {
         this.id = id;
         this.username = username;
@@ -33,6 +36,46 @@ public class TUser {
         this.answer = answer;
         this.role = role;
         this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
