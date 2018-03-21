@@ -43,4 +43,13 @@
     select id, parent_id, name, status, sort_order, create_time, update_time
     from mmall_category
   </select>
+  <update id="updateCategoryNameById" parameterType="map">
+    update mmall_category set name = #{categoryName}
+    where id = #{categoryId}
+  </update>
+  <select id="queryChildrenParallelCategoryById" resultMap="BaseResultMap" parameterType="int">
+    select id, parent_id, name, status, sort_order, create_time, update_time
+    from mmall_category
+    where parent_id = #{categoryId}
+  </select>
 </mapper>

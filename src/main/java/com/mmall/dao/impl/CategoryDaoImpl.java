@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: wangjianjun
@@ -26,5 +27,25 @@ public class CategoryDaoImpl implements ICategoryDao{
         tCategory.setCreateTime(new Date());
         tCategory.setUpdateTime(new Date());
         return tCategoryMapper.insert(tCategory);
+    }
+
+    @Override
+    public int updateCategoryNameById(Integer categoryId, String categoryName) {
+        return tCategoryMapper.updateCategoryNameById(categoryId,categoryName);
+    }
+
+    @Override
+    public List<TCategory> queryChildrenParallelCategoryById(Integer categoryId) {
+        return tCategoryMapper.queryChildrenParallelCategoryById(categoryId);
+    }
+
+    @Override
+    public TCategory selectByPrimaryKey(Integer categoryId) {
+        return tCategoryMapper.selectByPrimaryKey(categoryId);
+    }
+
+    @Override
+    public List<TCategory> selectCategoryChildrenByParentId(Integer categoryId) {
+        return tCategoryMapper.queryChildrenParallelCategoryById(categoryId);
     }
 }

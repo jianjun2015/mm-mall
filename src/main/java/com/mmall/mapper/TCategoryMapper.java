@@ -1,6 +1,8 @@
 package com.mmall.mapper;
 
 import com.mmall.pojo.TCategory;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface TCategoryMapper {
@@ -13,4 +15,8 @@ public interface TCategoryMapper {
     List<TCategory> selectAll();
 
     int updateByPrimaryKey(TCategory record);
+
+    int updateCategoryNameById(@Param("categoryId") Integer categoryId, @Param("categoryName")String categoryName);
+
+    List<TCategory> queryChildrenParallelCategoryById(@Param("categoryId")Integer categoryId);
 }
